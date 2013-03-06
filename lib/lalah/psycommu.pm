@@ -57,6 +57,7 @@ sub dispatch {
             warn "Success ".$req_url;
 
             if($req_charset eq 'utf8'){
+                warn "utf8";
                 $content = Unicode::UTF8::encode_utf8($res->content);
             }
             else{

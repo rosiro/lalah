@@ -4,6 +4,7 @@ use warnings;
 use utf8;
 use parent qw/lalah Amon2::Web/;
 use File::Spec;
+use URI::Escape::XS qw/uri_escape uri_unescape/;
 
 use Encode;
 use Unicode::UTF8;
@@ -19,7 +20,7 @@ use LWP::UserAgent;
 sub dispatch {
     my ($c) = @_;
 
-    my $req_url = $c->req->param('url');
+    my $req_url = uri_unescape($c->req->param('url'));
     my $req_method = $c->req->param('method') || 'GET';
     my $req_pass = $c->req->param('pass');
     my $req_charset = $c->req->param('charset') || 'utf8';
